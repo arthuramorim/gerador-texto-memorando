@@ -92,9 +92,9 @@ export default function Home() {
               onChange={(e) => setDestinatarioInput(e.target.value)}
             />
             <textarea
-              id="story"
+              id="assunto"
               name="assunto"
-              placeholder=""
+              placeholder="Descreva brevemente o que precisa..."
               value={assuntoInput}
               onChange={(e) => setAssuntoInput(e.target.value)}
               rows="5" cols="33"
