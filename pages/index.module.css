@@ -16,7 +16,13 @@
 
 .main,
 .main{
-  height: 100vh;
+  height: 75vh;
+  
+}
+
+.cabecalho .titulo{
+  display: flex;
+  align-items: center;
   
 }
 .main input[type="text"] {

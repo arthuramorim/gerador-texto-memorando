@@ -49,13 +49,13 @@ export default function Home() {
     <div>
       <Head>
         <title>Gerador de Textos</title>
-        <link rel="icon" href="/dog.png" />
+        <link rel="icon" href="/digitando.png" />
       </Head>
 
       <main className={styles.main}>
 
         <div className={styles.cabecalho}>
-          <div>
+          <div className={styles.titulo}>
             <img src="" />
             <h3>Gerador de Textos</h3>
           </div>
