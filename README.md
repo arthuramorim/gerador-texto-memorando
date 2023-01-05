@@ -1,41 +1,42 @@
-# OpenAI API Quickstart - Node.js example app
+# Gerador de Textos para documentos oficiais - Node.js
 
-This is an example pet name generator app used in the OpenAI API [quickstart tutorial](https://beta.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
+Esse é um sistema criado a partir de inteligencia artificial, com o intuito de auxiliar pessoal do serviço publico na elaboração de textos oficiais.
 
 ## Setup
 
-1. If you don’t have Node.js installed, [install it from here](https://nodejs.org/en/)
+1. Se você não tiver o Node.js instalado, [instale-o daqui](https://nodejs.org/en/)
 
-2. Clone this repository
+2. Clone o repositorio
 
-3. Navigate into the project directory
+3. Navegue até o diretorio do projeto
 
    ```bash
-   $ cd openai-quickstart-node
+   $ cd gerador-texto-memorando
    ```
 
-4. Install the requirements
+4. Instale os requisitos
 
    ```bash
    $ npm install
    ```
 
-5. Make a copy of the example environment variables file
+5. Faça uma cópia do arquivo de variáveis de ambiente de exemplo
 
-   On Linux systems: 
+   Systema Linux: 
    ```bash
    $ cp .env.example .env
    ```
-   On Windows:
+   No Windows:
    ```powershell
    $ copy .env.example .env
    ```
-6. Add your [API key](https://beta.openai.com/account/api-keys) to the newly created `.env` file
+6. Adicione api-keys ao arquivo .env que foi criado 
 
-7. Run the app
+7. Execute o app
 
    ```bash
    $ npm run dev
    ```
 
-You should now be able to access the app at [http://localhost:3000](http://localhost:3000)! For the full context behind this example app, check out the [tutorial](https://beta.openai.com/docs/quickstart).
+
+Agora você deve conseguir acessar o aplicativo em [http://localhost:3000](http://localhost:3000)! 
