@@ -34,7 +34,7 @@ export default function Home() {
           tipodocumento: tipodocumentoInput,
           acao: acaoInput,
           destinatario: destinatarioInput,
-          assunto: assuntoInput,
+          assunto: assuntoInput
         }),
       });
 
@@ -47,18 +47,16 @@ export default function Home() {
       //setResult(data.result);
       document.getElementById("resultado").value = data.result;
       disableFields(false);
-      document.querySelector('#gerar').value = "Gerar";
       setTipodocumentoInput("");
       setDestinatarioInput("");
       setAssuntoInput("");
       setAcaoInput("");
     } catch (error) {
-      disableFields(false);
-      document.querySelector('#gerar').value = "Gerar";
+      
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message + "erro na linha 60");
-      
+      disableFields(false);
     }
   }
 
