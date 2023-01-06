@@ -40,7 +40,7 @@ export default function Home() {
 
       const data = await response.json();
       if (response.status !== 200) {
-        throw data.error || new Error(`Request failed with status ${response.status}`);
+        throw data.error || new Error(`Request failed with status ${response.status} erro na linha 43`);
         
       }
 
@@ -57,7 +57,7 @@ export default function Home() {
       document.querySelector('#gerar').value = "Gerar";
       // Consider implementing your own error handling logic here
       console.error(error);
-      alert(error.message);
+      alert(error.message + "erro na linha 60");
       
     }
   }
