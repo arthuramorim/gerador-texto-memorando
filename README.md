@@ -34,7 +34,8 @@ Esse é um sistema criado a partir de inteligencia artificial, com o intuito de 
 
 7. Execute o app
 
-   ```bash
+   ```
+   bash
    $ npm run dev
    ```
 
