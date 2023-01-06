@@ -24,6 +24,7 @@ export default function Home() {
   async function onSubmit(event) {
     event.preventDefault();
     disableFields(true);
+    document.getElementById("textoResultado").value = '';
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -45,7 +46,7 @@ export default function Home() {
       }
 
       //setResult(data.result);
-      document.getElementById("resultado").value = data.result;
+      document.getElementById("textoResultado").value = data.result;
       disableFields(false);
       document.querySelector('#gerar').value = "Gerar";
       setTipodocumentoInput("");
@@ -158,7 +159,7 @@ export default function Home() {
             </div>
             <div class="col-md-6">
               <div class="mb-3">
-                <textarea class="form-control" id="resultado" rows="14" placeholder="Seu texto será exibido aqui"></textarea>
+                <textarea class="form-control" id="textoResultado" rows="14" placeholder="Seu texto será exibido aqui"></textarea>
               </div>
             </div>
           </div>
