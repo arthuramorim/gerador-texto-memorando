@@ -10,9 +10,21 @@ export default function Home() {
   const [acaoInput, setAcaoInput] = useState("");
   const [assuntoInput, setAssuntoInput] = useState("");
   const [result, setResult] = useState();
+  
+  function disableFields(argumento){
+    document.querySelector('#tipodocumento').disabled = argumento;
+    document.querySelector('#destinatario').disabled = argumento;
+    document.querySelector('#acao').disabled = argumento;
+    document.querySelector('#assunto').disabled = argumento;
+    document.querySelector('#gerar').disabled = argumento;
+    document.querySelector('#gerar').value = "Gerando texto...";
+    
+  }
+  
 
   async function onSubmit(event) {
     event.preventDefault();
+    disableFields(true);
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -30,20 +42,23 @@ export default function Home() {
       const data = await response.json();
       if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
+        
       }
 
       //setResult(data.result);
-      document.getElementById("teste").value = data.result;
-
+      document.getElementById("resultado").value = data.result;
+      disableFields(false);
+      document.querySelector('#gerar').value = "Gerar";
       setTipodocumentoInput("");
       setDestinatarioInput("");
       setAssuntoInput("");
       setAcaoInput("");
-
     } catch (error) {
+      disableFields(false);
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
+      document.querySelector('#gerar').value = "Gerar";
     }
   }
 
@@ -81,7 +96,6 @@ export default function Home() {
           </div>
         </div>
       </nav>
-
       <main className={styles.main}>
         <div class="container mt-5">
           <h3 class="text-center mb-1">Gere textos inteligentes!</h3>
@@ -118,6 +132,7 @@ export default function Home() {
                 </div>
                 <div class="mb-3">
                   <input
+                    id="destinatario"
                     class="form-control"
                     type="text"
                     name="destinatario"
@@ -138,14 +153,14 @@ export default function Home() {
                   >
                   </textarea>
                 </div>
-                <input type="submit" value="Gerar" class="btn btn-success" />
+                <input type="submit" value="Gerar" class="btn btn-success" id="gerar"/>
               </form>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
-                <textarea class="form-control" id="teste" rows="14" placeholder="Seu texto será exibido aqui"></textarea>
+                <textarea class="form-control" id="resultado" rows="14" placeholder="Seu texto será exibido aqui"></textarea>
               </div>
-              <div className={styles.result} id="resultado">{result}</div>
+              <div className={styles.result} id="resultado_antigo">{result}</div>
             </div>
           </div>
         </div>
