@@ -16,14 +16,14 @@ export default function Home() {
     document.querySelector('#acao').disabled = argumento;
     document.querySelector('#assunto').disabled = argumento;
     document.querySelector('#gerar').disabled = argumento;
-        
+    document.querySelector('#gerar').value = "Gerando texto...";
+    
   }
   
 
   async function onSubmit(event) {
     event.preventDefault();
     disableFields(true);
-    document.querySelector('#gerar').value = "Gerando texto...";
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -40,23 +40,25 @@ export default function Home() {
 
       const data = await response.json();
       if (response.status !== 200) {
-        throw data.error || new Error(`Request failed with status ${response.status} erro na linha 43`);
+        throw data.error || new Error(`Request failed with status ${response.status}`);
         
       }
 
       //setResult(data.result);
       document.getElementById("resultado").value = data.result;
       disableFields(false);
+      document.querySelector('#gerar').value = "Gerar";
       setTipodocumentoInput("");
       setDestinatarioInput("");
       setAssuntoInput("");
       setAcaoInput("");
     } catch (error) {
-      
+      disableFields(false);
+      document.querySelector('#gerar').value = "Gerar";
       // Consider implementing your own error handling logic here
       console.error(error);
-      alert(error.message + "erro na linha 60");
-      disableFields(false);
+      alert(error.message);
+      
     }
   }
 
