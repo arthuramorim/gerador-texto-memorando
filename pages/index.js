@@ -9,17 +9,17 @@ export default function Home() {
   const [acaoInput, setAcaoInput] = useState("");
   const [assuntoInput, setAssuntoInput] = useState("");
   const [result, setResult] = useState();
-  
-  function disableFields(argumento){
+
+  function disableFields(argumento) {
     document.querySelector('#tipodocumento').disabled = argumento;
     document.querySelector('#destinatario').disabled = argumento;
     document.querySelector('#acao').disabled = argumento;
     document.querySelector('#assunto').disabled = argumento;
     document.querySelector('#gerar').disabled = argumento;
     document.querySelector('#gerar').value = "Gerando texto...";
-    
+
   }
-  
+
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -41,7 +41,7 @@ export default function Home() {
       const data = await response.json();
       if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
-        
+
       }
 
       //setResult(data.result);
@@ -58,7 +58,7 @@ export default function Home() {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
-      
+
     }
   }
 
@@ -96,13 +96,13 @@ export default function Home() {
           </div>
         </div>
       </nav>
-      <main className={styles.main}>
+      <main>
         <div class="container mt-5">
           <h3 class="text-center mb-1">Gere textos inteligentes!</h3>
           <p class="text-center mb-4">Textos para documentos oficiais.</p>
           <div class="row">
             <div class="col-md-6 mb-3">
-              <form onSubmit={onSubmit} className={styles.form}>
+              <form onSubmit={onSubmit}>
                 <div class="row mb-3">
                   <div class="col">
                     <select class="form-select" aria-label="Campo para selecionar o tipo de documento"
@@ -153,14 +153,13 @@ export default function Home() {
                   >
                   </textarea>
                 </div>
-                <input type="submit" value="Gerar" class="btn btn-success" id="gerar"/>
+                <input type="submit" value="Gerar" class="btn btn-success" id="gerar" />
               </form>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
                 <textarea class="form-control" id="resultado" rows="14" placeholder="Seu texto será exibido aqui"></textarea>
               </div>
-              <div className={styles.result} id="resultado_antigo">{result}</div>
             </div>
           </div>
         </div>

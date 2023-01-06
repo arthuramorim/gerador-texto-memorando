@@ -68,14 +68,12 @@ export default async function (req, res) {
 function generatePrompt(campos) {
   //[tipodocumento, acao, destinatario, assunto];
 
-  const tipodocumento = campos[0];
-  const acao = campos[1];
-  const destinatario = campos[2];
-  const assunto = campos[3];
+  const tipodocumento = campos[0].toUpperCase() + campos[0].slice(1).toLowerCase();
+  const acao = campos[1].toUpperCase() + campos[1].slice(1).toLowerCase();
+  const destinatario = campos[2].toUpperCase() + campos[2].slice(1).toLowerCase();
+  const assunto = campos[3].toUpperCase() + campos[3].slice(1).toLowerCase();
+  console.log("Linha 75" + campos)
 
-  
-  //const capitalizedAnimal =
-    //animal[0].toUpperCase() + animal.slice(1).toLowerCase();
   return `Crie um texto no formato de ${tipodocumento} para ${destinatario}, ${acao} ${assunto}. Sou do setor XXXX`;
 
 }
