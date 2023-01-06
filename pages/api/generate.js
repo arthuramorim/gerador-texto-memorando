@@ -76,6 +76,6 @@ function generatePrompt(campos) {
   
   //const capitalizedAnimal =
     //animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Crie um texto no formato de ${tipodocumento} para ${destinatario}, ${acao} ${assunto}. Sou da prefeitura de Feira de Santana-BA`;
+  return `Crie um texto no formato de ${tipodocumento} para ${destinatario}, ${acao} ${assunto}. Sou do setor XXXX`;
 
 }

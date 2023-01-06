@@ -146,7 +146,7 @@ export default function Home() {
                     class="form-control"
                     id="assunto"
                     name="assunto"
-                    placeholder="Descreva brevemente o que precisa..."
+                    placeholder="Exemplo: Contratação de João Gomes para o setor x"
                     value={assuntoInput}
                     onChange={(e) => setAssuntoInput(e.target.value)}
                     rows="5" cols="33"
