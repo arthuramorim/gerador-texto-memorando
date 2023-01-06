@@ -1,6 +1,8 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 export default function Home() {
   const [tipodocumentoInput, setTipodocumentoInput] = useState("");
@@ -31,7 +33,7 @@ export default function Home() {
       }
 
       //setResult(data.result);
-      document.getElementById("resultado").innerHTML = data.result;
+      document.getElementById("teste").value = data.result;
 
       setTipodocumentoInput("");
       setDestinatarioInput("");
@@ -48,64 +50,105 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Gerador de Textos</title>
+        <title>GT Tools</title>
         <link rel="icon" href="/digitando.png" />
       </Head>
 
-      <main className={styles.main}>
-
-        <div className={styles.cabecalho}>
-          <div className={styles.titulo}>
-            <img src="" />
-            <h3>Gerador de Textos</h3>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="/digitando.png" alt="" height="24" class="d-inline-block align-text-top" />
+          </a>
+          <a class="navbar-brand" href="#">GT Tools</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Início</a>
+              </li>
+              {/*<li class="nav-item">
+                  <a class="nav-link" href="#">Features</a>
+                </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+  </li>*/}
+            </ul>
+            <span class="navbar-text">
+              Contato: arthur.desenvolvedor@gmail.com
+            </span>
           </div>
         </div>
-        
-        <div className={styles.row}>
-          <form onSubmit={onSubmit} className={styles.form}>
-            <select
-              id="tipodocumento"
-              name="tipodocumento"
-              value={tipodocumentoInput}
-              onChange={(e) => setTipodocumentoInput(e.target.value)}>
-              <option value="">Tipo do Documento</option>
-              <option value="memorando">Memorando</option>
-              <option value="oficio">Ofício</option>
-              <option value="circular">Circular</option>
-            </select>
-            <select
-              id="acao"
-              name="acao"
-              value={acaoInput}
-              onChange={(e) => setAcaoInput(e.target.value)}>
-              <option value="">Ação</option>
-              <option value="informando">Informar</option>
-              <option value="solicitando">Solicitar</option>
-              <option value="requerendo">Requerer</option>
-              <option value="em resposta a">Em resposta</option>
-            </select>
-            <input
-              type="text"
-              name="destinatario"
-              placeholder="Nome do Destinatário"
-              value={destinatarioInput}
-              onChange={(e) => setDestinatarioInput(e.target.value)}
-            />
-            <textarea
-              id="assunto"
-              name="assunto"
-              placeholder="Descreva brevemente o que precisa..."
-              value={assuntoInput}
-              onChange={(e) => setAssuntoInput(e.target.value)}
-              rows="5" cols="33"
-            >
-            </textarea>
-            <input type="submit" value="Gerar" />
-          </form>
-          <div className={styles.result} id="resultado">{result}</div>
+      </nav>
 
+      <main className={styles.main}>
+        <div class="container mt-5">
+          <h3 class="text-center mb-1">Gere textos inteligentes!</h3>
+          <p class="text-center mb-4">Textos para documentos oficiais.</p>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <form onSubmit={onSubmit} className={styles.form}>
+                <div class="row mb-3">
+                  <div class="col">
+                    <select class="form-select" aria-label="Campo para selecionar o tipo de documento"
+                      id="tipodocumento"
+                      name="tipodocumento"
+                      value={tipodocumentoInput}
+                      onChange={(e) => setTipodocumentoInput(e.target.value)}>
+                      <option value="">Tipo do Documento</option>
+                      <option value="memorando">Memorando</option>
+                      <option value="oficio">Ofício</option>
+                      <option value="circular">Circular</option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <select class="form-select" aria-label="Campo para selecionar o tipo de documento"
+                      id="acao"
+                      name="acao"
+                      value={acaoInput}
+                      onChange={(e) => setAcaoInput(e.target.value)}>
+                      <option value="">Ação</option>
+                      <option value="informando">Informar</option>
+                      <option value="solicitando">Solicitar</option>
+                      <option value="requerendo">Requerer</option>
+                      <option value="em resposta a">Em resposta</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="destinatario"
+                    placeholder="Nome do Destinatário"
+                    value={destinatarioInput}
+                    onChange={(e) => setDestinatarioInput(e.target.value)}
+                  />
+                </div>
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    id="assunto"
+                    name="assunto"
+                    placeholder="Descreva brevemente o que precisa..."
+                    value={assuntoInput}
+                    onChange={(e) => setAssuntoInput(e.target.value)}
+                    rows="5" cols="33"
+                  >
+                  </textarea>
+                </div>
+                <input type="submit" value="Gerar" class="btn btn-success" />
+              </form>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <textarea class="form-control" id="teste" rows="14" placeholder="Seu texto será exibido aqui"></textarea>
+              </div>
+              <div className={styles.result} id="resultado">{result}</div>
+            </div>
+          </div>
         </div>
-
       </main>
     </div>
   );

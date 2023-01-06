@@ -46,9 +46,9 @@ export default async function (req, res) {
     
     //const texto = completion.data.choices[0].text
     //texto = texto.replace(/\n/g, '<br>');
-    res.status(200).json({ result: completion.data.choices[0].text.replace(/\n/g, '<br>')});
+    res.status(200).json({ result: completion.data.choices[0].text});
     
-    console.log(completion.data.choices[0].text);
+    console.log(completion.data);
   } catch (error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
@@ -76,6 +76,6 @@ function generatePrompt(campos) {
   
   //const capitalizedAnimal =
     //animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Sou chefe do setor DIE preciso enviar um ${tipodocumento} para ${destinatario}, ${acao} sobre ${assunto}`;
+  return `Crie um texto no formato de ${tipodocumento} para ${destinatario}, ${acao} sobre ${assunto}. Sou da prefeitura de Feira de Santana-BA`;
 
 }
