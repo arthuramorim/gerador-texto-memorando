@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
-import styles from "./index.module.css";
+//import styles from "./index.module.css";
 import 'bootstrap/dist/css/bootstrap.css';
 
 export default function Home() {
@@ -10,21 +10,8 @@ export default function Home() {
   const [assuntoInput, setAssuntoInput] = useState("");
   const [result, setResult] = useState();
 
-  function disableFields(argumento) {
-    document.querySelector('#tipodocumento').disabled = argumento;
-    document.querySelector('#destinatario').disabled = argumento;
-    document.querySelector('#acao').disabled = argumento;
-    document.querySelector('#assunto').disabled = argumento;
-    document.querySelector('#gerar').disabled = argumento;
-    document.querySelector('#gerar').value = "Gerando texto...";
-
-  }
-
-
   async function onSubmit(event) {
     event.preventDefault();
-    disableFields(true);
-    document.getElementById("textoResultado").value = '';
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -47,15 +34,11 @@ export default function Home() {
 
       //setResult(data.result);
       document.getElementById("textoResultado").value = data.result;
-      disableFields(false);
-      document.querySelector('#gerar').value = "Gerar";
       setTipodocumentoInput("");
       setDestinatarioInput("");
       setAssuntoInput("");
       setAcaoInput("");
     } catch (error) {
-      disableFields(false);
-      document.querySelector('#gerar').value = "Gerar";
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);

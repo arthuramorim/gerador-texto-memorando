@@ -28,7 +28,7 @@ export default async function (req, res) {
     return;
   }
 
-  const texto = `Crie um texto no formato de ${tipodocumento} para ${destinatario}, ${acao} ${assunto}. Sou do setor XXXX`;
+  const texto = `Crie um texto no formato de ${tipodocumento} para ${destinatario}, ${acao} ${assunto}. Sou do setor XXXX.`;
   console.log(texto)
   try {
     const completion = await openai.createCompletion({
