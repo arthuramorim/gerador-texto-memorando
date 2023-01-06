@@ -3,7 +3,6 @@ import { useState } from "react";
 import styles from "./index.module.css";
 import 'bootstrap/dist/css/bootstrap.css';
 
-
 export default function Home() {
   const [tipodocumentoInput, setTipodocumentoInput] = useState("");
   const [destinatarioInput, setDestinatarioInput] = useState("");
@@ -17,14 +16,14 @@ export default function Home() {
     document.querySelector('#acao').disabled = argumento;
     document.querySelector('#assunto').disabled = argumento;
     document.querySelector('#gerar').disabled = argumento;
-    document.querySelector('#gerar').value = "Gerando texto...";
-    
+        
   }
   
 
   async function onSubmit(event) {
     event.preventDefault();
     disableFields(true);
+    document.querySelector('#gerar').value = "Gerando texto...";
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -33,9 +32,9 @@ export default function Home() {
         },
         body: JSON.stringify({
           tipodocumento: tipodocumentoInput,
+          acao: acaoInput,
           destinatario: destinatarioInput,
           assunto: assuntoInput,
-          acao: acaoInput,
         }),
       });
 
@@ -55,10 +54,11 @@ export default function Home() {
       setAcaoInput("");
     } catch (error) {
       disableFields(false);
+      document.querySelector('#gerar').value = "Gerar";
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
-      document.querySelector('#gerar').value = "Gerar";
+      
     }
   }
 
