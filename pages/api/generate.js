@@ -19,8 +19,6 @@ export default async function (req, res) {
   const camposPreenchidos = [tipodocumento, acao, destinatario, assunto];
   const camposTratados = camposPreenchidos.every(campo => campo.trim().length > 0);
 
-  
-
   if (!camposTratados) {
     res.status(422).json({
       error: {
@@ -30,11 +28,12 @@ export default async function (req, res) {
     return;
   }
 
-  
+  const texto = `Crie um texto no formato de ${tipodocumento} para ${destinatario}, ${acao} ${assunto}. Sou do setor XXXX`;
+  console.log(texto)
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(camposPreenchidos),
+      prompt: texto,
       temperature: 0,
       max_tokens: 2878,
       top_p: 1,
@@ -44,10 +43,7 @@ export default async function (req, res) {
 
     });
     
-    //const texto = completion.data.choices[0].text
-    //texto = texto.replace(/\n/g, '<br>');
     res.status(200).json({ result: completion.data.choices[0].text});
-    
     console.log(completion.data);
   } catch (error) {
     // Consider adjusting the error handling logic for your use case
@@ -65,7 +61,7 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(campos) {
+/*function generatePrompt(campos) {
   //[tipodocumento, acao, destinatario, assunto];
 
   const tipodocumento = campos[0];
@@ -73,9 +69,10 @@ function generatePrompt(campos) {
   const destinatario = campos[2];
   const assunto = campos[3];
 
+  campos.forEach(campo => {
+    console.log(campo)
+  });
   
-  //const capitalizedAnimal =
-    //animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Crie um texto no formato de ${tipodocumento} para ${destinatario}, ${acao} ${assunto}. Sou da prefeitura de Feira de Santana-BA`;
+  return `Crie um texto no formato de ${tipodocumento} para ${destinatario}, ${acao} ${assunto}. Sou do setor XXXX`;
 
-}
+}*/
