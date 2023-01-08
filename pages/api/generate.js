@@ -69,6 +69,9 @@ function generatePrompt(campos) {
     console.log(campo)
   });
   
-  return `Sou do setor XXXX, escreva um ${tipodocumento} para ${destinatario},  ${acao} algo relacionado ao seguinte assunto: ${assunto}.`;
-
+  return `
+  Crie um: ${tipodocumento}
+  Para: ${destinatario}
+  Com a ação: ${acao} 
+  Assunto: ${assunto}`;
 }

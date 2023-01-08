@@ -32,8 +32,6 @@ export default function Home() {
         throw data.error || new Error(`Request failed with status ${response.status}`);
 
       }
-
-      
       
       setTipodocumentoInput("");
       setDestinatarioInput("");
@@ -146,7 +144,13 @@ export default function Home() {
             </div>
             <div class="col-md-6">
               <div class="mb-3">
-                <textarea class="form-control" id="textoResultado" rows="14" placeholder="Seu texto será exibido aqui" value={textoResultadoInput}></textarea>
+                <textarea 
+                class="form-control" 
+                id="textoResultado" rows="14" 
+                placeholder="Seu texto será exibido aqui" 
+                value={textoResultadoInput}
+                onChange={(e) => setTextoResultadoInput(e.target.value)}
+                ></textarea>
               </div>
             </div>
           </div>
