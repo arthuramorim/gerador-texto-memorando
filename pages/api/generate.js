@@ -14,9 +14,10 @@ export default async function (req, res) {
     return;
   }
 
-  const {tipodocumento = '', acao = '', destinatario = '', assunto = '' } = req.body;
+  const { tipodocumento = '', acao = '', destinatario = '', assunto = '' } = req.body;
 
   const camposPreenchidos = [tipodocumento, acao, destinatario, assunto];
+  console.log(generatePrompt(camposPreenchidos));
   const camposTratados = camposPreenchidos.every(campo => campo.trim().length > 0);
 
   if (!camposTratados) {
@@ -29,18 +30,18 @@ export default async function (req, res) {
   }
 
   try {
-   
+
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: generatePrompt(camposPreenchidos),
       temperature: 0,
-      max_tokens: 2878,
+      max_tokens: 256,
       top_p: 1,
       frequency_penalty: 0,
-      presence_penalty: 0
+      presence_penalty: 0,
     });
-    res.status(200).json({ result: completion.data.choices[0].text});
-  
+    res.status(200).json({ result: completion.data.choices[0].text });
+
   } catch (error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
@@ -65,13 +66,8 @@ function generatePrompt(campos) {
   const destinatario = campos[2];
   const assunto = campos[3];
 
-  campos.forEach(campo => {
-    console.log(campo)
-  });
-  
-  return `
-  Crie um: ${tipodocumento}
-  Para: ${destinatario}
-  Com a ação: ${acao} 
-  Assunto: ${assunto}`;
+  return `Crie um: ${tipodocumento}.
+  Para: ${destinatario}.
+  Com a ação: ${acao}. 
+  Assunto: ${assunto}.`;
 }
