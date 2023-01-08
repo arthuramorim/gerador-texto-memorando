@@ -23,7 +23,7 @@ export default function Home() {
           tipodocumento: "circular",
           acao: "informar",
           destinatario: "Colbert Martins",
-          assunto: "Uso de mascaras a partir do dia primeiro"
+          assunto: "Uso de mascaras e sabão a partir do dia primeiro"
         }),
       });
 
