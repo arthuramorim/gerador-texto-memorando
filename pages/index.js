@@ -32,7 +32,7 @@ export default function Home() {
         throw data.error || new Error(`Request failed with status ${response.status}`);
 
       }
-      
+
       setTipodocumentoInput("");
       setDestinatarioInput("");
       setAssuntoInput("");
@@ -54,13 +54,12 @@ export default function Home() {
         <title>GT Tools</title>
         <link rel="icon" href="/digitando.png" />
       </Head>
-      {tipodocumentoInput + acaoInput + destinatarioInput + assuntoInput}
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
             <img src="/digitando.png" alt="" height="24" class="d-inline-block align-text-top" />
           </a>
-          <a class="navbar-brand" href="#">GT Tools</a>
+          <a class="navbar-brand" href="#">GTI</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -69,16 +68,11 @@ export default function Home() {
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Início</a>
               </li>
-              {/*<li class="nav-item">
-                  <a class="nav-link" href="#">Features</a>
-                </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-  </li>*/}
+
             </ul>
-            <span class="navbar-text">
-              Contato: arthur.desenvolvedor@gmail.com
-            </span>
+            {/*<span class="navbar-text">
+              <a href="mailto:arthur.desenvolvedor@gmail.com">Contato: arthur.desenvolvedor@gmail.com</a>
+</span>*/}
           </div>
         </div>
       </nav>
@@ -144,18 +138,23 @@ export default function Home() {
             </div>
             <div class="col-md-6">
               <div class="mb-3">
-                <textarea 
-                class="form-control" 
-                id="textoResultado" rows="14" 
-                placeholder="Seu texto será exibido aqui" 
-                value={textoResultadoInput}
-                onChange={(e) => setTextoResultadoInput(e.target.value)}
+                <textarea
+                  class="form-control"
+                  id="textoResultado" rows="14"
+                  placeholder="Seu texto será exibido aqui"
+                  value={textoResultadoInput}
+                  onChange={(e) => setTextoResultadoInput(e.target.value)}
                 ></textarea>
               </div>
             </div>
           </div>
         </div>
+        <footer class="container">
+          <p class="float-end">version 1.0</p>
+          <p><a href="maito:arthur.desenvolvedor@gmail.com">arthur.desenvolvedor@gmail.com</a></p>
+        </footer>
       </main>
+
     </div>
   );
 }
