@@ -8,7 +8,8 @@ export default function Home() {
   const [destinatarioInput, setDestinatarioInput] = useState("");
   const [acaoInput, setAcaoInput] = useState("");
   const [assuntoInput, setAssuntoInput] = useState("");
-  const [result, setResult] = useState();
+  const [textoResultadoInput, setTextoResultadoInput] = useState("");
+  //const [result, setResult] = useState();
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -32,12 +33,15 @@ export default function Home() {
 
       }
 
-      //setResult(data.result);
-      document.getElementById("textoResultado").value = data.result;
+      
+      
       setTipodocumentoInput("");
       setDestinatarioInput("");
       setAssuntoInput("");
       setAcaoInput("");
+      setTextoResultadoInput(data.result);
+      //setResult();
+      //document.getElementById("textoResultado").value = data.result;
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -142,7 +146,7 @@ export default function Home() {
             </div>
             <div class="col-md-6">
               <div class="mb-3">
-                <textarea class="form-control" id="textoResultado" rows="14" placeholder="Seu texto será exibido aqui"></textarea>
+                <textarea class="form-control" id="textoResultado" rows="14" placeholder="Seu texto será exibido aqui" value={textoResultadoInput}></textarea>
               </div>
             </div>
           </div>

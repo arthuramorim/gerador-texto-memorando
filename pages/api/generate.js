@@ -15,7 +15,7 @@ export default async function (req, res) {
   }
 
   const {tipodocumento = '', acao = '', destinatario = '', assunto = '' } = req.body;
-  
+
   const camposPreenchidos = [tipodocumento, acao, destinatario, assunto];
   const camposTratados = camposPreenchidos.every(campo => campo.trim().length > 0);
 
@@ -28,23 +28,19 @@ export default async function (req, res) {
     return;
   }
 
-  const texto = `Crie um texto no formato de ${tipodocumento} para ${destinatario}, ${acao} ${assunto}. Sou do setor XXXX.`;
-  console.log(texto)
   try {
+   
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: texto,
+      prompt: generatePrompt(camposPreenchidos),
       temperature: 0,
       max_tokens: 2878,
       top_p: 1,
       frequency_penalty: 0,
-      presence_penalty: 0,
-
-
+      presence_penalty: 0
     });
-    
     res.status(200).json({ result: completion.data.choices[0].text});
-    console.log(completion.data);
+  
   } catch (error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
@@ -61,10 +57,10 @@ export default async function (req, res) {
   }
 }
 
-/*function generatePrompt(campos) {
+function generatePrompt(campos) {
   //[tipodocumento, acao, destinatario, assunto];
 
-  const tipodocumento = campos[0];
+  const tipodocumento = campos[0]
   const acao = campos[1];
   const destinatario = campos[2];
   const assunto = campos[3];
@@ -73,6 +69,6 @@ export default async function (req, res) {
     console.log(campo)
   });
   
-  return `Crie um texto no formato de ${tipodocumento} para ${destinatario}, ${acao} ${assunto}. Sou do setor XXXX`;
+  return `Sou do setor XXXX, escreva um ${tipodocumento} para ${destinatario},  ${acao} algo relacionado ao seguinte assunto: ${assunto}.`;
 
-}*/
+}
