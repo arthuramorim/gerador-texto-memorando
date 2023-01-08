@@ -20,10 +20,10 @@ export default function Home() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          tipodocumento: "circular",
-          acao: "informar",
-          destinatario: "Colbert Martins",
-          assunto: "Uso de mascaras e sabão a partir do dia primeiro"
+          tipodocumento: tipodocumentoInput,
+          acao: acaoInput,
+          destinatario: destinatarioInput,
+          assunto: assuntoInput
         }),
       });
 
