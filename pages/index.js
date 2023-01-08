@@ -54,7 +54,7 @@ export default function Home() {
         <title>GT Tools</title>
         <link rel="icon" href="/digitando.png" />
       </Head>
-
+      {tipodocumentoInput + acaoInput + destinatarioInput + assuntoInput}
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
