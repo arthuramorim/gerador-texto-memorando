@@ -11,8 +11,14 @@ export default function Home() {
   const [textoResultadoInput, setTextoResultadoInput] = useState("");
   //const [result, setResult] = useState();
 
+  function disabledSubmit(disabled, statusTexto){
+    document.querySelector('#gerar').disabled = disabled;
+    document.querySelector('#gerar').value = statusTexto;
+  }
+
   async function onSubmit(event) {
     event.preventDefault();
+    disabledSubmit(true, "Aguarde...");
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -33,7 +39,7 @@ export default function Home() {
         throw data.error || new Error(`Request failed with status ${response.status}`);
         
       }
-
+      disabledSubmit(false, "Gerar");
       setTipodocumentoInput("");
       setDestinatarioInput("");
       setAssuntoInput("");
@@ -45,6 +51,8 @@ export default function Home() {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
+      disabledSubmit(false, "Gerar");
+      setTipodocumentoInput("");
 
     }
   }
