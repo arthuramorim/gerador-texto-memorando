@@ -45,14 +45,12 @@ export default function Home() {
       setAssuntoInput("");
       setAcaoInput("");
       setTextoResultadoInput(data.result);
-      //setResult();
-      //document.getElementById("textoResultado").value = data.result;
+      console.time()
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
       disabledSubmit(false, "Gerar");
-      setTipodocumentoInput("");
 
     }
   }
